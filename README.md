@@ -39,4 +39,4 @@ A modern, fully responsive, and elegant landing page template for a Coffee & Maa
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/TheBWTech/al-asala-cafe.git
+   git clone https://github.com/TheBWTech/Al-Asala-Cafe.git
