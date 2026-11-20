@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Asala Cafe | Coffee & Maamoul</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- General Settings --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6F4E37;
+            --primary-dark: #4A3222;
+            --primary-light: #A67B5B;
+            --secondary: #D4A373;
+            --accent: #E8C07D;
+            --cream: #FDF6E9;
+            --dark: #2C1E14;
+            --text-light: #6B5B4F;
+            --white: #FFFFFF;
+            --shadow: 0 10px 40px rgba(0,0,0,0.08);
+            --shadow-hover: 0 20px 50px rgba(0,0,0,0.15);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        ::selection { background: var(--secondary); color: var(--dark); }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
+
+        /* --- Header / Navigation --- */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(253, 246, 233, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.05);
+            padding: 12px 5%;
+        }
+
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--dark); }
+
+        .logo-icon {
+            width: 50px; height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent);
+            font-size: 24px;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(111, 78, 55, 0.3);
+        }
+
+        .logo:hover .logo-icon { transform: rotate(15deg) scale(1.1); }
+
+        .logo-text h1 { font-size: 24px; font-weight: 900; color: var(--primary-dark); line-height: 1.2; }
+        .logo-text span { font-size: 11px; color: var(--primary-light); letter-spacing: 3px; font-weight: 400; }
+
+        nav ul { display: flex; list-style: none; gap: 35px; align-items: center; }
+
+        nav ul li a {
+            text-decoration: none; color: var(--dark); font-weight: 600; font-size: 15px;
+            position: relative; transition: var(--transition); padding: 5px 0;
+        }
+
+        nav ul li a::after {
+            content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 3px;
+            background: var(--secondary); border-radius: 3px; transition: var(--transition);
+        }
+
+        nav ul li a:hover::after { width: 100%; }
+        nav ul li a:hover { color: var(--primary); }
+
+        .nav-cta {
+            background: var(--primary); color: var(--white) !important;
+            padding: 12px 28px !important; border-radius: 50px; font-weight: 700 !important;
+            transition: var(--transition) !important; box-shadow: 0 8px 20px rgba(111, 78, 55, 0.25);
+        }
+
+        .nav-cta:hover { background: var(--primary-dark) !important; transform: translateY(-3px); box-shadow: 0 12px 25px rgba(111, 78, 55, 0.35); }
+        .nav-cta::after { display: none !important; }
+
+        .menu-toggle { display: none; font-size: 26px; cursor: pointer; color: var(--primary-dark); background: none; border: none; }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; padding: 120px 5% 80px;
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #FDF6E9 0%, #F5E6D3 50%, #EED9C0 100%);
+        }
+
+        .hero::before {
+            content: ''; position: absolute; width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.15) 0%, transparent 70%);
+            top: -200px; right: -200px; border-radius: 50%;
+        }
+
+        .hero::after {
+            content: ''; position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(111, 78, 55, 0.08) 0%, transparent 70%);
+            bottom: -150px; left: -100px; border-radius: 50%;
+        }
+
+        .hero-content { flex: 1; position: relative; z-index: 2; max-width: 600px; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(212, 163, 115, 0.2); color: var(--primary-dark);
+            padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 600;
+            margin-bottom: 25px; border: 1px solid rgba(212, 163, 115, 0.4);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge i { color: var(--secondary); }
+
+        .hero-content h2 {
+            font-size: 58px; font-weight: 900; line-height: 1.2; color: var(--primary-dark);
+            margin-bottom: 25px; animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-content h2 .highlight { color: var(--primary); position: relative; display: inline-block; }
+        .hero-content h2 .highlight::after {
+            content: ''; position: absolute; bottom: 5px; left: 0; width: 100%; height: 15px;
+            background: var(--accent); opacity: 0.4; border-radius: 5px; z-index: -1;
+        }
+
+        .hero-content p {
+            font-size: 18px; color: var(--text-light); margin-bottom: 35px; max-width: 500px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-btns { display: flex; gap: 18px; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.3s both; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px; padding: 16px 35px;
+            border-radius: 50px; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 700;
+            text-decoration: none; cursor: pointer; transition: var(--transition); border: none;
+        }
+
+        .btn-primary { background: var(--primary); color: var(--white); box-shadow: 0 10px 30px rgba(111, 78, 55, 0.3); }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(111, 78, 55, 0.4); }
+
+        .btn-outline { background: transparent; color: var(--primary-dark); border: 2px solid var(--primary); }
+        .btn-outline:hover { background: var(--primary); color: var(--white); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(111, 78, 55, 0.3); }
+
+        .hero-stats { display: flex; gap: 50px; margin-top: 60px; animation: fadeInUp 0.8s ease 0.4s both; }
+        .stat h4 { font-size: 34px; font-weight: 900; color: var(--primary); }
+        .stat h4 span { color: var(--secondary); }
+        .stat p { font-size: 14px; color: var(--text-light); margin: 0; }
+
+        .hero-image { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; animation: fadeInRight 1s ease 0.3s both; }
+        .hero-image-wrapper { position: relative; width: 450px; height: 450px; }
+        .hero-circle {
+            position: absolute; width: 100%; height: 100%; border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            opacity: 0.3; animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero-image-wrapper img {
+            position: absolute; width: 85%; height: 85%; object-fit: cover; border-radius: 50%;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border: 8px solid var(--white); box-shadow: 0 30px 60px rgba(111, 78, 55, 0.25);
+        }
+
+        .floating-card {
+            position: absolute; background: var(--white); padding: 15px 22px; border-radius: 20px;
+            box-shadow: var(--shadow); display: flex; align-items: center; gap: 12px;
+            animation: float 5s ease-in-out infinite; z-index: 3;
+        }
+
+        .floating-card i {
+            font-size: 22px; color: var(--secondary); background: rgba(212, 163, 115, 0.15);
+            width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+        }
+
+        .floating-card .info h5 { font-size: 14px; font-weight: 700; color: var(--dark); margin: 0; }
+        .floating-card .info p { font-size: 12px; color: var(--text-light); margin: 0; }
+        .card-1 { top: 10%; left: -20px; animation-delay: 0s; }
+        .card-2 { bottom: 15%; right: -30px; animation-delay: 2.5s; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.05); opacity: 0.4; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+
+        /* --- General Sections --- */
+        section { padding: 100px 5%; }
+
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 70px; }
+        .section-header .subtitle { display: inline-block; color: var(--secondary); font-weight: 700; font-size: 16px; letter-spacing: 3px; margin-bottom: 12px; text-transform: uppercase; }
+        .section-header h2 { font-size: 42px; font-weight: 900; color: var(--primary-dark); margin-bottom: 15px; line-height: 1.3; }
+        .section-header p { color: var(--text-light); font-size: 17px; }
+
+        /* --- About Section --- */
+        .about { background: var(--white); position: relative; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .about-image { position: relative; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
+        .about-image img { width: 100%; height: 500px; object-fit: cover; transition: var(--transition); }
+        .about-image:hover img { transform: scale(1.05); }
+        .about-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(44, 30, 20, 0.3), transparent 50%); }
+        .about-badge {
+            position: absolute; bottom: 30px; left: 30px; background: var(--white);
+            padding: 20px 30px; border-radius: 20px; box-shadow: var(--shadow); z-index: 2; text-align: center;
+        }
+        .about-badge h4 { font-size: 32px; font-weight: 900; color: var(--primary); }
+        .about-badge p { font-size: 13px; color: var(--text-light); margin: 0; }
+
+        .about-text h3 { font-size: 32px; font-weight: 900; color: var(--primary-dark); margin-bottom: 20px; line-height: 1.4; }
+        .about-text > p { color: var(--text-light); margin-bottom: 30px; font-size: 16px; }
+        .about-features { display: grid; gap: 20px; }
+        .feature-item { display: flex; gap: 18px; align-items: flex-start; }
+        .feature-icon {
+            width: 55px; height: 55px; min-width: 55px; background: rgba(212, 163, 115, 0.15);
+            border-radius: 15px; display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-size: 22px; transition: var(--transition);
+        }
+        .feature-item:hover .feature-icon { background: var(--primary); color: var(--white); transform: rotate(5deg); }
+        .feature-item h4 { font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+        .feature-item p { font-size: 14px; color: var(--text-light); margin: 0; }
+
+        /* --- Menu --- */
+        .menu { background: linear-gradient(180deg, var(--cream) 0%, #F5E6D3 100%); }
+        .menu-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
+        .menu-tab {
+            padding: 12px 30px; border-radius: 50px; background: var(--white); color: var(--text-light);
+            font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 15px; border: 2px solid transparent;
+            cursor: pointer; transition: var(--transition);
+        }
+        .menu-tab:hover { border-color: var(--secondary); color: var(--primary); }
+        .menu-tab.active { background: var(--primary); color: var(--white); border-color: var(--primary); box-shadow: 0 10px 25px rgba(111, 78, 55, 0.25); }
+
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+
+        .menu-card {
+            background: var(--white); border-radius: 25px; padding: 0; overflow: hidden;
+            box-shadow: var(--shadow); transition: var(--transition); position: relative;
+        }
+        .menu-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+
+        .menu-card-img { position: relative; height: 220px; overflow: hidden; background-color: #e0d0c0; }
+        .menu-card-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); display: block; }
+        .menu-card:hover .menu-card-img img { transform: scale(1.1); }
+
+        .menu-card-tag {
+            position: absolute; top: 15px; left: 15px; background: var(--secondary); color: var(--dark);
+            padding: 5px 15px; border-radius: 50px; font-size: 12px; font-weight: 700;
+        }
+
+        .menu-card-body { padding: 25px; }
+        .menu-card-body .title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .menu-card-body h4 { font-size: 19px; font-weight: 700; color: var(--dark); }
+        .menu-card-body .price { font-size: 20px; font-weight: 900; color: var(--primary); }
+        .menu-card-body p { font-size: 14px; color: var(--text-light); margin-bottom: 15px; line-height: 1.6; }
+
+        .menu-card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .rating { color: var(--secondary); font-size: 14px; display: flex; gap: 3px; }
+        .rating span { color: var(--text-light); font-size: 13px; margin-left: 5px; }
+
+        .add-btn {
+            background: var(--primary); color: var(--white); border: none; width: 40px; height: 40px;
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 16px; transition: var(--transition);
+        }
+        .add-btn:hover { background: var(--primary-dark); transform: rotate(90deg) scale(1.1); }
+
+        /* --- Featured Maamoul Section --- */
+        .maamoul { background: var(--primary-dark); position: relative; overflow: hidden; color: var(--white); }
+        .maamoul::before {
+            content: ''; position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.12) 0%, transparent 70%);
+            top: -200px; right: -100px; border-radius: 50%;
+        }
+        .maamoul::after {
+            content: ''; position: absolute; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.08) 0%, transparent 70%);
+            bottom: -100px; left: -50px; border-radius: 50%;
+        }
+        .maamoul-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+        .maamoul-text .subtitle { color: var(--accent); font-weight: 700; font-size: 16px; letter-spacing: 3px; display: inline-block; margin-bottom: 15px; }
+        .maamoul-text h2 { font-size: 44px; font-weight: 900; margin-bottom: 25px; line-height: 1.3; }
+        .maamoul-text h2 span { color: var(--accent); }
+        .maamoul-text p { color: rgba(255, 255, 255, 0.75); font-size: 16px; margin-bottom: 30px; }
+        .maamoul-list { display: grid; gap: 15px; margin-bottom: 35px; }
+        .maamoul-list-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(255, 255, 255, 0.9); }
+        .maamoul-list-item i { color: var(--accent); font-size: 18px; }
+        .maamoul .btn-primary { background: var(--secondary); color: var(--dark); box-shadow: 0 10px 30px rgba(212, 163, 115, 0.3); }
+        .maamoul .btn-primary:hover { background: var(--accent); box-shadow: 0 15px 35px rgba(212, 163, 115, 0.4); }
+
+        .maamoul-image { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .maamoul-image img {
+            width: 100%; height: 250px; object-fit: cover; border-radius: 25px;
+            transition: var(--transition); border: 3px solid rgba(212, 163, 115, 0.3);
+        }
+        .maamoul-image img:nth-child(1) { grid-row: span 2; height: 520px; }
+        .maamoul-image img:hover { transform: scale(1.03); border-color: var(--accent); }
+
+        /* --- Testimonials --- */
+        .testimonials { background: var(--white); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .testimonial-card {
+            background: var(--cream); border-radius: 25px; padding: 35px; position: relative;
+            transition: var(--transition); border: 2px solid transparent;
+        }
+        .testimonial-card:hover { transform: translateY(-8px); border-color: var(--secondary); box-shadow: var(--shadow); }
+        .quote-icon { font-size: 40px; color: var(--secondary); opacity: 0.4; margin-bottom: 15px; }
+        .testimonial-card > p { font-size: 15px; color: var(--text-light); margin-bottom: 25px; line-height: 1.9; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 15px; }
+        .testimonial-author img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 3px solid var(--secondary); }
+        .testimonial-author h5 { font-size: 16px; font-weight: 700; color: var(--dark); margin: 0; }
+        .testimonial-author p { font-size: 13px; color: var(--text-light); margin: 0; }
+        .testimonial-stars { color: var(--secondary); font-size: 14px; margin-top: 5px; }
+
+        /* --- Contact Section --- */
+        .contact { background: linear-gradient(180deg, #F5E6D3 0%, var(--cream) 100%); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; max-width: 1200px; margin: 0 auto; }
+        .contact-info { display: flex; flex-direction: column; gap: 25px; }
+        .contact-item {
+            display: flex; gap: 20px; align-items: flex-start; background: var(--white);
+            padding: 25px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.04); transition: var(--transition);
+        }
+        .contact-item:hover { transform: translateX(5px); box-shadow: var(--shadow); }
+        .contact-item-icon {
+            width: 55px; height: 55px; min-width: 55px; background: var(--primary);
+            border-radius: 15px; display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-size: 22px;
+        }
+        .contact-item h4 { font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+        .contact-item p { font-size: 14px; color: var(--text-light); margin: 0; line-height: 1.6; }
+
+        .contact-form { background: var(--white); padding: 40px; border-radius: 30px; box-shadow: var(--shadow); }
+        .contact-form h3 { font-size: 26px; font-weight: 900; color: var(--primary-dark); margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 14px 18px; border: 2px solid #EDE0D0; border-radius: 12px;
+            font-family: 'Cairo', sans-serif; font-size: 14px; color: var(--dark);
+            background: var(--cream); transition: var(--transition); outline: none;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--secondary); background: var(--white); box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .contact-form .btn-primary { width: 100%; justify-content: center; margin-top: 10px; }
+
+        /* --- Footer --- */
+        footer { background: var(--primary-dark); color: rgba(255, 255, 255, 0.8); padding: 70px 5% 30px; position: relative; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; max-width: 1200px; margin: 0 auto 50px; }
+        .footer-col h4 { color: var(--white); font-size: 18px; font-weight: 700; margin-bottom: 22px; position: relative; padding-bottom: 12px; }
+        .footer-col h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: var(--secondary); border-radius: 3px; }
+        .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; text-decoration: none; color: var(--white); }
+        .footer-logo .logo-icon { width: 45px; height: 45px; font-size: 20px; background: var(--secondary); color: var(--dark); }
+        .footer-logo h3 { font-size: 22px; font-weight: 900; }
+        .footer-col p { font-size: 14px; line-height: 1.9; color: rgba(255, 255, 255, 0.65); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.65); text-decoration: none; font-size: 14px;
+            transition: var(--transition); display: inline-flex; align-items: center; gap: 8px;
+        }
+        .footer-col ul li a:hover { color: var(--secondary); transform: translateX(5px); }
+        .footer-col ul li a i { font-size: 10px; color: var(--secondary); }
+        .social-links { display: flex; gap: 12px; margin-top: 20px; }
+        .social-links a {
+            width: 42px; height: 42px; background: rgba(255, 255, 255, 0.08); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; color: var(--white);
+            font-size: 16px; text-decoration: none; transition: var(--transition);
+        }
+        .social-links a:hover { background: var(--secondary); color: var(--dark); transform: translateY(-5px); }
+
+        .newsletter {
+            display: flex; margin-top: 15px; border-radius: 50px; overflow: hidden;
+            background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .newsletter input {
+            flex: 1; background: transparent; border: none; padding: 14px 20px;
+            font-family: 'Cairo', sans-serif; color: var(--white); font-size: 14px; outline: none;
+        }
+        .newsletter input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .newsletter button { background: var(--secondary); border: none; padding: 0 22px; color: var(--dark); font-size: 16px; cursor: pointer; transition: var(--transition); }
+        .newsletter button:hover { background: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+            font-size: 13px; color: rgba(255, 255, 255, 0.5);
+        }
+        .footer-bottom a { color: var(--secondary); text-decoration: none; }
+
+        /* --- Back to Top --- */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+            background: var(--primary); color: var(--white); border: none; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 18px;
+            cursor: pointer; opacity: 0; visibility: hidden; transition: var(--transition);
+            z-index: 999; box-shadow: 0 8px 25px rgba(111, 78, 55, 0.35);
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--primary-dark); transform: translateY(-5px); }
+
+        /* --- Responsive --- */
+        @media (max-width: 1100px) {
+            .hero-content h2 { font-size: 46px; }
+            .about-grid, .maamoul-grid { gap: 40px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 140px; gap: 60px; }
+            .hero-content { max-width: 100%; }
+            .hero-content p { margin-left: auto; margin-right: auto; }
+            .hero-btns { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-image-wrapper { width: 350px; height: 350px; }
+            .about-grid, .maamoul-grid, .contact-grid { grid-template-columns: 1fr; }
+            .about-image img { height: 400px; }
+            .maamoul-image img:nth-child(1) { height: 400px; }
+            .maamoul-image img { height: 190px; }
+            
+            nav ul {
+                position: fixed; top: 0; left: -100%; width: 300px; height: 100vh;
+                background: var(--cream); flex-direction: column; justify-content: center;
+                gap: 30px; transition: var(--transition); box-shadow: 10px 0 40px rgba(0,0,0,0.1); padding: 50px;
+            }
+            nav ul.open { left: 0; }
+            .menu-toggle { display: block; }
+            
+            .menu-card { max-width: 400px; margin: 0 auto; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h2 { font-size: 34px; }
+            .section-header h2 { font-size: 30px; }
+            .about-text h3 { font-size: 26px; }
+            .maamoul-text h2 { font-size: 32px; }
+            .hero-stats { gap: 30px; }
+            .stat h4 { font-size: 26px; }
+            .hero-image-wrapper { width: 280px; height: 280px; }
+            .floating-card { padding: 10px 15px; }
+            .floating-card .info h5 { font-size: 12px; }
+            .floating-card .info p { font-size: 10px; }
+            .card-1 { left: -10px; }
+            .card-2 { right: -10px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 35px; }
+            .contact-form { padding: 25px; }
+            .maamoul-image { grid-template-columns: 1fr; }
+            .maamoul-image img:nth-child(1) { height: 250px; grid-row: auto; }
+            .maamoul-image img { height: 200px; }
+            .about-badge { padding: 15px 20px; bottom: 15px; left: 15px; }
+            .about-badge h4 { font-size: 24px; }
+            .menu-tabs { gap: 8px; }
+            .menu-tab { padding: 10px 18px; font-size: 13px; }
+            .hero { padding: 120px 4% 60px; }
+            section { padding: 70px 4%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-mug-hot"></i>
+            </div>
+            <div class="logo-text">
+                <h1>Al-Asala</h1>
+                <span>COFFEE & MAAMOUL</span>
+            </div>
+        </a>
+        <nav>
+            <ul id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#maamoul">Maamoul</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact" class="nav-cta">Order Now</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                Best cafe in town since 2010
+            </div>
+            <h2>Enjoy the taste of <span class="highlight">authentic coffee</span> and fresh Maamoul</h2>
+            <p>At Al-Asala Cafe, we offer you a unique experience that combines the flavor of authentic Arabic coffee with the sweetness of fresh Maamoul, baked daily with the finest ingredients.</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn btn-primary">
+                    <i class="fas fa-coffee"></i>
+                    Explore Menu
+                </a>
+                <a href="#about" class="btn btn-outline">
+                    <i class="fas fa-play"></i>
+                    Learn More
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h4>16<span>+</span></h4>
+                    <p>Years of experience</p>
+                </div>
+                <div class="stat">
+                    <h4>50<span>+</span></h4>
+                    <p>Coffee varieties</p>
+                </div>
+                <div class="stat">
+                    <h4>10<span>K</span></h4>
+                    <p>Happy customers</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-wrapper">
+                <div class="hero-circle"></div>
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Al-Asala Cafe">
+                <div class="floating-card card-1">
+                    <i class="fas fa-cookie-bite"></i>
+                    <div class="info">
+                        <h5>Fresh Maamoul</h5>
+                        <p>Baked daily</p>
+                    </div>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-mug-hot"></i>
+                    <div class="info">
+                        <h5>Specialty Coffee</h5>
+                        <p>100% Arabica beans</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header">
+            <span class="subtitle">About Us</span>
+            <h2>The Story of Al-Asala Cafe</h2>
+            <p>Our journey began with a passion for coffee and a love for Maamoul, to bring you an unforgettable experience</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-image">
+              <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Al-Asala Cafe">
+                <div class="about-badge">
+                    <h4>16+</h4>
+                    <p>Years of excellence</p>
+                </div>
+            </div>
+            <div class="about-text">
+                <h3>We offer more than just a cup of coffee</h3>
+                <p>At Al-Asala Cafe, we believe that coffee is not just a drink, but a complete experience that combines authenticity and modernity. We started our journey in 2010 with one goal: to serve the best Arabic coffee and fresh Maamoul in a warm and comfortable atmosphere.</p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-seedling"></i></div>
+                        <div>
+                            <h4>100% Natural Ingredients</h4>
+                            <p>We use the finest Arabica beans and fresh nuts to prepare our Maamoul.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-fire"></i></div>
+                        <div>
+                            <h4>Freshly Baked Daily</h4>
+                            <p>Our Maamoul is baked daily in-store to ensure freshness and perfect flavor.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                        <div>
+                            <h4>Warm Family Atmosphere</h4>
+                            <p>Comfortable and modern spaces that make you feel like you're in your second home.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="section-header">
+            <span class="subtitle">Our Menu</span>
+            <h2>Discover Our Signature Flavors</h2>
+            <p>A wide selection of coffee, Maamoul, and oriental sweets</p>
+        </div>
+        <div class="menu-tabs">
+            <button class="menu-tab active" data-filter="all">All</button>
+            <button class="menu-tab" data-filter="coffee">Coffee</button>
+            <button class="menu-tab" data-filter="maamoul">Maamoul</button>
+            <button class="menu-tab" data-filter="sweets">Sweets</button>
+        </div>
+        <div class="menu-grid" id="menuGrid">
+            <!-- Cards will be added by JS -->
+        </div>
+    </section>
+
+    <!-- Featured Maamoul Section -->
+    <section class="maamoul" id="maamoul">
+        <div class="maamoul-grid">
+            <div class="maamoul-text">
+                <span class="subtitle">Our Specialty</span>
+                <h2>Authentic <span>Maamoul</span> with Irresistible Flavors</h2>
+                <p>Our Maamoul is crafted by oriental sweets experts, using the finest dates, nuts, and natural butter. Taste authenticity in every bite.</p>
+                <div class="maamoul-list">
+                    <div class="maamoul-list-item">
+                        <i class="fas fa-check-circle"></i>
+                        Premium date Maamoul - baked daily
+                    </div>
+                    <div class="maamoul-list-item">
+                        <i class="fas fa-check-circle"></i>
+                        Coconut and almond Maamoul
+                    </div>
+                    <div class="maamoul-list-item">
+                        <i class="fas fa-check-circle"></i>
+                        Premium Aleppo pistachio Maamoul
+                    </div>
+                    <div class="maamoul-list-item">
+                        <i class="fas fa-check-circle"></i>
+                        Assorted Maamoul gift boxes
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i>
+                    Order Your Maamoul Now
+                </a>
+            </div>
+            <div class="maamoul-image">
+                <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Maamoul">
+                <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Date Maamoul">
+                <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Oriental Sweets">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <span class="subtitle">Testimonials</span>
+            <h2>What Our Customers Say</h2>
+            <p>We are always happy to hear your experiences and feedback that drive us to be better</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                <p>"The best cafe I've ever tried! Their Arabic coffee is irresistible, and the date Maamoul is fresh and delicious. The atmosphere is great and the service is excellent."</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ahmed">
+                    <div>
+                        <h5>Ahmed Al-Salem</h5>
+                        <p>Regular customer</p>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                <p>"Their Maamoul is something else! I tried the pistachio Maamoul and it was a wonderful experience. I recommend everyone to visit Al-Asala Cafe, you won't regret it."</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah">
+                    <div>
+                        <h5>Sarah Al-Otaibi</h5>
+                        <p>Food blogger</p>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                <p>"Perfect place for meetings and relaxation. Specialty coffee and fresh Maamoul. The decor and atmosphere give you a feeling of comfort and luxury."</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Khalid">
+                    <div>
+                        <h5>Khalid Al-Malki</h5>
+                        <p>Businessman</p>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <span class="subtitle">Contact Us</span>
+            <h2>We're Here to Serve You</h2>
+            <p>Place your order or book your table, and we're happy to hear from you anytime</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4>Address</h4>
+                        <p>King Fahd Road, Al-Olaya District, Riyadh, Saudi Arabia</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+966 55 123 4567<br>+966 11 234 5678</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>hello@al-asala.com<br>orders@al-asala.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <h4>Working Hours</h4>
+                        <p>Sat - Thu: 7:00 AM - 12:00 AM<br>Friday: 1:00 PM - 12:00 AM</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <h3>Send Your Order</h3>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Order or Message</label>
+                    <textarea id="message" placeholder="Write your order details or inquiry here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Order
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="footer-logo">
+                    <div class="logo-icon"><i class="fas fa-mug-hot"></i></div>
+                    <h3>Al-Asala</h3>
+                </a>
+                <p>Al-Asala Cafe offers you a unique experience of authentic Arabic coffee and fresh Maamoul in a modern and warm atmosphere. We look forward to your visit!</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Snapchat"><i class="fab fa-snapchat"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#menu"><i class="fas fa-chevron-right"></i> Menu</a></li>
+                    <li><a href="#maamoul"><i class="fas fa-chevron-right"></i> Maamoul</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Order Delivery</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Table Reservations</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Event Orders</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Maamoul Gift Boxes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Open Buffet</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to receive all the latest news about our offers and products.</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email address">
+                    <button aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Al-Asala Cafe. All rights reserved.</p>
+            <p>Made with <i class="fas fa-heart" style="color: var(--secondary);"></i> in Riyadh</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Menu Data with Updated Stable Image URLs
+        const menuItems = [
+            {
+                id: 1,
+                name: 'Arabic Coffee',
+                category: 'coffee',
+                price: '$4.00',
+                desc: 'Authentic Arabic coffee with cardamom and saffron, served with dates.',
+                img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                tag: 'Most Popular',
+                rating: 5
+            },
+            {
+                id: 2,
+                name: 'Specialty Latte',
+                category: 'coffee',
+                price: '$4.80',
+                desc: 'Double espresso with steamed milk and silky smooth microfoam.',
+                img: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                tag: '',
+                rating: 5
+            },
+            {
+                id: 3,
+                name: 'Turkish Coffee',
+                category: 'coffee',
+                price: '$3.75',
+                desc: 'Turkish coffee prepared on sand, with a rich flavor and thick foam.',
+                img: 'https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                tag: 'New',
+                rating: 4
+            },
+            {
+                id: 4,
+                name: 'Premium Date Maamoul',
+                category: 'maamoul',
+                price: '$6.70',
+                desc: 'Maamoul stuffed with premium Sukkari dates, baked with natural butter.',
+                img: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                tag: 'Best Seller',
+                rating: 5
+            },
+            {
+                id: 5,
+                name: 'Pistachio Maamoul',
+                category: 'maamoul',
+                price: '$8.50',
+                desc: 'Maamoul stuffed with ground Aleppo pistachios with sugar and butter.',
+                img: 'https://images.unsplash.com/photo-1598373182133-52452f7691ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                tag: '',
+                rating: 5
+            },
+            {
+                id: 6,
+                name: 'Coconut Maamoul',
+                category: 'maamoul',
+                price: '$5.90',
+                desc: 'Maamoul with fresh sweetened coconut, baked until golden.',
+                img: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                tag: '',
+                rating: 4
+            },
+            {
+                id: 7,
+                name: 'Assorted Baklava',
+                category: 'sweets',
+                price: '$9.30',
+                desc: 'Assortment of pistachio and walnut baklava, made with ghee.',
+                img: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                tag: 'Special',
+                rating: 5
+            },
+            {
+                id: 8,
+                name: 'Nabulsi Kunafa',
+                category: 'sweets',
+                price: '$7.50',
+                desc: 'Kunafa with fresh cheese and syrup, served hot with pistachios.',
+                img: 'https://images.unsplash.com/photo-1626804475297-41609ea0d8a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                tag: '',
+                rating: 5
+            }
+        ];
+
+        // Render Menu
+        function renderMenu(filter = 'all') {
+            const grid = document.getElementById('menuGrid');
+            const filtered = filter === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === filter);
+            
+            grid.innerHTML = filtered.map(item => `
+                <div class="menu-card" data-category="${item.category}">
+                    <div class="menu-card-img">
+                        <!-- تمت إضافة onerror كخيار احتياطي في حال تعطل أي صورة مستقبلاً -->
+                        <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';">
+                        ${item.tag ? `<span class="menu-card-tag">${item.tag}</span>` : ''}
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="title-row">
+                            <h4>${item.name}</h4>
+                            <span class="price">${item.price}</span>
+                        </div>
+                        <p>${item.desc}</p>
+                        <div class="menu-card-footer">
+                            <div class="rating">
+                                ${Array.from({length: 5}, (_, i) => 
+                                    i < item.rating 
+                                        ? '<i class="fas fa-star"></i>' 
+                                        : '<i class="far fa-star"></i>'
+                                ).join('')}
+                                <span>(${item.rating}.0)</span>
+                            </div>
+                            <button class="add-btn" onclick="addToOrder('${item.name}')" aria-label="Add to order">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add to Order (simulation)
+        function addToOrder(name) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--primary-dark);
+                color: white;
+                padding: 15px 30px;
+                border-radius: 50px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-family: 'Cairo', sans-serif;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                animation: fadeInUp 0.4s ease;
+                width: max-content;
+                max-width: 90%;
+            `;
+            toast.innerHTML = `<i class="fas fa-check-circle" style="color: var(--secondary);"></i> Added "${name}" to your order`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.4s';
+                setTimeout(() => toast.remove(), 400);
+            }, 2500);
+        }
+
+        // Menu Tabs
+        document.querySelectorAll('.menu-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                renderMenu(tab.dataset.filter);
+            });
+        });
+
+        // Header on Scroll
+        const header = document.getElementById('header');
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('open')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            });
+        });
+
+        // Close menu on outside click
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('open');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            }
+        });
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Sent Successfully!';
+                btn.style.background = '#4CAF50';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 2500);
+            }, 1500);
+        });
+
+        // Load Menu
+        renderMenu();
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-card, .testimonial-card, .contact-item, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
